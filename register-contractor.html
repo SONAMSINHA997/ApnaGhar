@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register as Contractor – ApnaGhar</title>
+  <link rel="stylesheet" href="contractor.css" />
+</head>
+<body>
+
+  <!-- Navbar dynamically loaded -->
+  <div id="navbar"></div>
+
+  <header class="contractor-header">Hire Now - Contractor Categories</header>
+
+  <div class="container">
+    <div class="categories">
+
+      <!-- Employee -->
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="Employee">
+        <h3>Employee</h3>
+        <a href="tel:+911234567890" class="btn btn-call">Call</a>
+        <a href="https://forms.gle/UVas83d99XKAyFkZ8" target="_blank" class="btn btn-apply">Apply</a>
+      </div>
+
+      <!-- Architect -->
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1598368195835-91e67f80c9d7?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXJjaGl0ZWN0fGVufDB8fDB8fHww" alt="Architect">
+        <h3>Architect</h3>
+        <a href="tel:+911234567890" class="btn btn-call">Call</a>
+        <a href="https://forms.gle/yourGoogleFormLink" target="_blank" class="btn btn-apply">Apply</a>
+      </div>
+
+      <!-- Civil Engineer -->
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1694521787193-9293daeddbaa?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Architect">
+        <img src="" alt="Civil Engineer">
+        <h3>Civil Engineer</h3>
+        <a href="tel:+911234567890" class="btn btn-call">Call</a>
+        <a href="https://forms.gle/yourGoogleFormLink" target="_blank" class="btn btn-apply">Apply</a>
+      </div>
+
+      <!-- Site Supervisor -->
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475" alt="Site Supervisor">
+        <h3>Site Supervisor</h3>
+        <a href="tel:+911234567890" class="btn btn-call">Call</a>
+        <a href="https://forms.gle/yourGoogleFormLink" target="_blank" class="btn btn-apply">Apply</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer dynamically loaded -->
+  <div id="footer"></div>
+
+  <script src="categories.js"></script>
+  <script>
+    // Load Navbar
+    fetch("navbar.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+      });
+
+    // Load Footer
+    fetch("footer.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("footer").innerHTML = data;
+      });
+
+    // Change call button color on click
+    document.addEventListener("click", (e) => {
+      if(e.target.classList.contains("btn-call")){
+        e.target.classList.add("clicked");
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link rel="stylesheet" href="auth.css"/>
+</head>
+<body>
+
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Login</h2>
+
+    <form id="loginForm">
+      <input type="email" id="loginEmail" placeholder="Email" required />
+      <input type="password" id="loginPassword" placeholder="Password" required />
+      <button type="submit">Login</button>
+
+      <p class="switch-text">Don't have an account? <a href="signup.html">Sign Up</a></p>
+      <p class="forgot"><a href="#" id="forgotLink">Forgot Password?</a></p>
+    </form>
+
+    <p id="loginMessage" style="margin-top:8px;"></p>
+  </div>
+</div>
+
+<!-- Firebase compat CDN (v10 but v8-style API) -->
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+
+<!-- Your Firebase init -->
+<script src="firebase.js"></script>
+
+<script>
+// Login
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value;
+  const msg = document.getElementById("loginMessage");
+
+  try {
+    await auth.signInWithEmailAndPassword(email, password);
+    msg.style.color = "green";
+    msg.textContent = "Login successful! Redirecting...";
+    setTimeout(() => {
+      window.location.href = "index.html"; // change if you want
+    }, 1000);
+  } catch (err) {
+    msg.style.color = "red";
+    msg.textContent = err.message;
+  }
+});
+
+// Forgot password
+document.getElementById("forgotLink").addEventListener("click", async (e) => {
+  e.preventDefault();
+  const email = prompt("Enter your email to reset password:");
+  if (!email) return;
+  const msg = document.getElementById("loginMessage");
+  try {
+    await auth.sendPasswordResetEmail(email);
+    msg.style.color = "green";
+    msg.textContent = "Password reset email sent. Check your inbox.";
+  } catch (err) {
+    msg.style.color = "red";
+    msg.textContent = err.message;
+  }
+});
+</script>
+</body>
+</html>
